@@ -9,6 +9,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import junit.framework.TestCase;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -47,6 +48,7 @@ public class MainApp extends Application {
             primaryStage.setMinHeight(430);
             primaryStage.setMinWidth(334);
             primaryStage.show();
+            
             
           
 		} catch(Exception e) {
