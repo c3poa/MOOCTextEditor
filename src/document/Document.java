@@ -85,7 +85,9 @@ public abstract class Document {
 		boolean passed = true;
 		int syllFound = doc.getNumSyllables();
 		int wordsFound = doc.getNumWords();
+		System.out.println("Words found: " + wordsFound);
 		int sentFound = doc.getNumSentences();
+		System.out.println("Sentences found: " + sentFound);
 		if (syllFound != syllables) {
 			System.out.println("\nIncorrect number of syllables.  Found " + syllFound 
 					+ ", expected " + syllables);
@@ -132,7 +134,7 @@ public abstract class Document {
 	{
 	    // TODO: You will play with this method in week 1, and 
 		// then implement it in week 2
-	    return 0.0;
+	    return this.text.length();
 	}
 	
 	
