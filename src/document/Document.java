@@ -64,10 +64,32 @@ public abstract class Document {
 	 */
 	protected int countSyllables(String word)
 	{
-		// TODO: Implement this method so that you can call it from the 
-	    // getNumSyllables method in BasicDocument (module 2) and 
-	    // EfficientDocument (module 3).
-	    return 0;
+		int syllables = 0;
+		String vowels = "aeiouy";
+		
+		if(word.length() == 1) {
+			if(vowels.contains(String.valueOf(word))){
+				return 1;
+			} 
+			return 0;
+		}
+		
+		if(word.endsWith("e")) {
+			if(!word.contains("a") && !word.contains("i") && !word.contains("o") && !word.contains("u") && !word.contains("y")) {
+				return 1;
+			}
+		}
+
+		for(int i = 0; i < word.length()-1; i++) {
+			if(vowels.contains(String.valueOf(word.charAt(i)))) {
+				syllables++;
+				if(vowels.contains(String.valueOf(word.charAt(i+1)))) {
+					i++;
+				}
+			}
+		}
+		
+	    return syllables;
 	}
 	
 	/** A method for testing
@@ -84,6 +106,7 @@ public abstract class Document {
 		System.out.print(doc.getText() + "\n....");
 		boolean passed = true;
 		int syllFound = doc.getNumSyllables();
+		System.out.println("Syllables found: " + syllFound);
 		int wordsFound = doc.getNumWords();
 		System.out.println("Words found: " + wordsFound);
 		int sentFound = doc.getNumSentences();
