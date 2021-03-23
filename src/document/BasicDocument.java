@@ -74,12 +74,13 @@ public class BasicDocument extends Document
 	@Override
 	public int getNumSyllables()
 	{
-	    //TODO: Implement this method in week 2.  See the Module 2 support videos 
-        // if you need help.  And note that there is no need to use a regular
-		// expression for the syllable counting.  We recommend you implement 
-		// the helper function countSyllables in Document.java using a loop, 
-		// and then call it here on each word.
-        return 0;
+		List<String> words = this.getTokens("[a-zA-Z]+");
+		int syl = 0;
+		
+		for(String word : words) {
+			syl += countSyllables(word);
+		}
+        return syl;
 	}
 	
 	
