@@ -64,7 +64,6 @@ public abstract class Document {
 	 */
 	protected int countSyllables(String word)
 	{
-	    //System.out.print("Counting syllables in " + word + "...");
 		int numSyllables = 0;
 		boolean newSyllable = true;
 		String vowels = "aeiouy";
@@ -150,9 +149,13 @@ public abstract class Document {
 	/** return the Flesch readability score of this document */
 	public double getFleschScore()
 	{
-	    // TODO: You will play with this method in week 1, and 
-		// then implement it in week 2
-	    return this.text.length();
+	    final double stat = 206.835;
+	    final double stat2 = 1.015;
+	    final double stat3 = 84.6;
+	    final double words = getNumWords();
+	    final double sentences = getNumSentences();
+	    final double syllables = getNumSyllables();
+	    return stat - stat2 * (words/sentences) - stat3 * (syllables / words);
 	}
 	
 	
