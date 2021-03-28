@@ -11,9 +11,9 @@ import java.util.List;
  */
 public class EfficientDocument extends Document {
 
-	private int numWords;  // The number of words in the document
-	private int numSentences;  // The number of sentences in the document
-	private int numSyllables;  // The number of syllables in the document
+	private int numWords;
+	private int numSentences;
+	private int numSyllables;
 	
 	public EfficientDocument(String text)
 	{
@@ -43,17 +43,24 @@ public class EfficientDocument extends Document {
      * and sentences, and set the member variables appropriately.
      * Words, sentences and syllables are defined as described below. 
      */
+	@SuppressWarnings("unused")
 	private void processText()
 	{
-		// Call getTokens on the text to preserve separate strings that are 
-		// either words or sentence-ending punctuation.  Ignore everything
-		// That is not a word or a sentence-ending puctuation.
-		// MAKE SURE YOU UNDERSTAND THIS LINE BEFORE YOU CODE THE REST
-		// OF THIS METHOD.
+
 		List<String> tokens = getTokens("[!?.]+|[a-zA-Z]+");
 		
-		// TODO: Finish this method.  Remember the countSyllables method from 
-		// Document.  That will come in handy here.  isWord defined above will also help.
+		for(int i = 0; i < tokens.size(); i++) {
+			if(isWord(tokens.get(i))) {
+				numWords++;
+				numSyllables += countSyllables(tokens.get(i));
+				if(tokens.size()-1 == i) {
+					numSentences++;
+				}
+			} else if(!isWord(tokens.get(i))) {
+				numSentences++;
+			}
+		}
+		
 	}
 
 	
@@ -72,8 +79,7 @@ public class EfficientDocument extends Document {
 	 */
 	@Override
 	public int getNumSentences() {
-		//TODO: write this method.  Hint: It's simple
-		return 0;
+		return numSentences;
 	}
 
 	
@@ -93,8 +99,7 @@ public class EfficientDocument extends Document {
 	 */
 	@Override
 	public int getNumWords() {
-		//TODO: write this method.  Hint: It's simple
-	    return 0;
+	    return numWords;
 	}
 
 
@@ -115,8 +120,7 @@ public class EfficientDocument extends Document {
 	 */
 	@Override
 	public int getNumSyllables() {
-        //TODO: write this method.  Hint: It's simple
-        return 0;
+        return numSyllables;
 	}
 	
 	// Can be used for testing
