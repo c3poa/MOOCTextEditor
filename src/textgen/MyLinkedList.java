@@ -30,7 +30,9 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	 * @param element The element to add
 	 */
 	public boolean add(E element) {
-		Objects.requireNonNull(element);
+		if(element == null) {
+			return false;
+		}
 
 		LLNode<E> newNode = new LLNode<E>(element, tail.prev, tail);
 		tail.prev.next = newNode;
@@ -44,18 +46,17 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	 * @throws IndexOutOfBoundsException if the index is out of bounds. */
 	public E get(int index) 
 	{
-		if(index < 0 || index >= size) {
+		if (index < 0 || index >= size) {
 			throw new IndexOutOfBoundsException();
 		}
-		LLNode<E> ll = head.next;
-		LLNode<E> search = ll;
-		for(int i = 0; i <= index; i++) {
-			search = search.next;
-			if(i == index) {
-				return search.data;
-			}
+
+		LLNode<E> node = head.next;
+		while (--index >= 0) {
+			node = node.next;
 		}
-		return null;
+
+		return node.data;
+		
 	}
 
 	/**
