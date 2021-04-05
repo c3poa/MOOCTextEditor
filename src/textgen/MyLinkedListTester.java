@@ -5,7 +5,6 @@ package textgen;
 
 import static org.junit.Assert.*;
 
-import java.util.LinkedList;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -22,6 +21,8 @@ public class MyLinkedListTester {
 	MyLinkedList<Integer> emptyList;
 	MyLinkedList<Integer> longerList;
 	MyLinkedList<Integer> list1;
+	MyLinkedList<String> testAdd;
+	MyLinkedList<Integer> testSize;
 	
 	/**
 	 * @throws java.lang.Exception
@@ -123,8 +124,15 @@ public class MyLinkedListTester {
 	@Test
 	public void testAddEnd()
 	{
-        // TODO: implement this test
-		
+		testAdd = new MyLinkedList<String>();
+		testAdd.add("D");
+		testAdd.add("C");
+		testAdd.add("E");
+		assertEquals("Get: check the last element", "E", testAdd.get(testAdd.size()-1));
+		testAdd.add("F");
+		assertEquals("Get: check the last element", "F", testAdd.get(testAdd.size()-1));
+		testAdd.remove(testAdd.size()-1);
+		assertEquals("Get: check the last element", "E", testAdd.get(testAdd.size()-1));
 	}
 
 	
@@ -132,7 +140,12 @@ public class MyLinkedListTester {
 	@Test
 	public void testSize()
 	{
-		// TODO: implement this test
+		testSize = new MyLinkedList<Integer>();
+		testSize.add(1);
+		testSize.add(65);
+		testSize.add(12);
+		testSize.add(144);
+		assertEquals("Size: check the size of an array", 4, testSize.size());
 	}
 
 	
