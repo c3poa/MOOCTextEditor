@@ -23,6 +23,7 @@ public class MyLinkedListTester {
 	MyLinkedList<Integer> list1;
 	MyLinkedList<String> testAdd;
 	MyLinkedList<Integer> testSize;
+	MyLinkedList<Integer> testAddAtIndex;
 	
 	/**
 	 * @throws java.lang.Exception
@@ -157,7 +158,12 @@ public class MyLinkedListTester {
 	@Test
 	public void testAddAtIndex()
 	{
-        // TODO: implement this test
+		testAddAtIndex = new MyLinkedList<Integer>();
+		testAddAtIndex.add(6);
+		testAddAtIndex.add(1);
+		testAddAtIndex.add(9);
+		testAddAtIndex.add(1, 12);
+		assertEquals("Get: get element at index", (Integer)6, testSize.get(1));
 		
 	}
 	
