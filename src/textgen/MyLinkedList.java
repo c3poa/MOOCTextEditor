@@ -1,7 +1,6 @@
 package textgen;
 
 import java.util.AbstractList;
-import java.util.Objects;
 
 
 /** A class that implements a doubly linked list
@@ -66,7 +65,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	 */
 	public void add(int index, E element ) 
 	{
-		//if(element == null) throw new NullPointerException();
+		if(element == null) throw new NullPointerException();
 		
 	}
 
