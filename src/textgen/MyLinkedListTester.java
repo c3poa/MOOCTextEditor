@@ -45,6 +45,23 @@ public class MyLinkedListTester {
 		list1.add(21);
 		list1.add(42);
 		
+		testAdd = new MyLinkedList<String>();
+		testAdd.add("D");
+		testAdd.add("C");
+		testAdd.add("E");
+		
+		testSize = new MyLinkedList<Integer>();
+		testSize.add(1);
+		testSize.add(65);
+		testSize.add(12);
+		testSize.add(144);
+		
+		testAddAtIndex = new MyLinkedList<Integer>();
+		testAddAtIndex.add(6);
+		testAddAtIndex.add(1);
+		testAddAtIndex.add(9);
+		testAddAtIndex.add(1, 12);
+		
 	}
 
 	
@@ -125,10 +142,7 @@ public class MyLinkedListTester {
 	@Test
 	public void testAddEnd()
 	{
-		testAdd = new MyLinkedList<String>();
-		testAdd.add("D");
-		testAdd.add("C");
-		testAdd.add("E");
+		
 		assertEquals("Get: check the last element", "E", testAdd.get(testAdd.size()-1));
 		testAdd.add("F");
 		assertEquals("Get: check the last element", "F", testAdd.get(testAdd.size()-1));
@@ -141,11 +155,6 @@ public class MyLinkedListTester {
 	@Test
 	public void testSize()
 	{
-		testSize = new MyLinkedList<Integer>();
-		testSize.add(1);
-		testSize.add(65);
-		testSize.add(12);
-		testSize.add(144);
 		assertEquals("Size: check the size of an array", 4, testSize.size());
 	}
 
@@ -158,11 +167,6 @@ public class MyLinkedListTester {
 	@Test
 	public void testAddAtIndex()
 	{
-		testAddAtIndex = new MyLinkedList<Integer>();
-		testAddAtIndex.add(6);
-		testAddAtIndex.add(1);
-		testAddAtIndex.add(9);
-		testAddAtIndex.add(1, 12);
 		assertEquals("Get: get element at index", (Integer)12, testAddAtIndex.get(1));
 		
 	}
