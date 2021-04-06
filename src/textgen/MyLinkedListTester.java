@@ -175,8 +175,7 @@ public class MyLinkedListTester {
 	@Test
 	public void testSet()
 	{
-	    // TODO: implement this test
-	    
+		assertEquals("Get: get element at index", "A", shortList.set(0, "Q"));
 	}
 	
 	

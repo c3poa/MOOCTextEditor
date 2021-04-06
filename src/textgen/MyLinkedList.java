@@ -77,7 +77,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
 		newNode.next = node;
 		node.prev.next = newNode;
 		node.prev = newNode;
-		
+		++size;
 	}
 
 
@@ -118,7 +118,10 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	 */
 	public E set(int index, E element) 
 	{
-		return null;
+		LLNode<E> el = getNth(index);
+		E data = el.data;
+		el.data = element;
+		return data;
 	}
 	
 	@Override
