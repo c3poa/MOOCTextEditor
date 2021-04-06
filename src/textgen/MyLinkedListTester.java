@@ -163,7 +163,7 @@ public class MyLinkedListTester {
 		testAddAtIndex.add(1);
 		testAddAtIndex.add(9);
 		testAddAtIndex.add(1, 12);
-		assertEquals("Get: get element at index", (Integer)6, testSize.get(1));
+		assertEquals("Get: get element at index", (Integer)12, testAddAtIndex.get(1));
 		
 	}
 	
