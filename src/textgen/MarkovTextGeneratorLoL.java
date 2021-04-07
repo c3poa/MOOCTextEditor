@@ -32,7 +32,35 @@ public class MarkovTextGeneratorLoL implements MarkovTextGenerator {
 	@Override
 	public void train(String sourceText)
 	{
-		// TODO: Implement this method
+		String[] w = sourceText.split(" ");
+		starter = w[0];
+		String prevWord = starter;
+		ListNode ln = checkNode(prevWord);
+		for(int i = 1; i < w.length; i++) {
+			if(ln != null) {
+				ln.addNextWord(w[i]);
+			} else {
+				ListNode node = new ListNode(prevWord);
+				wordList.add(node);
+				node.addNextWord(w[i]);
+			}
+			prevWord = w[i];
+			if(i == w.length-1) {
+				w[i] = starter;
+			}
+		}
+		
+	}
+	
+	public ListNode checkNode(String prevWord) {
+		
+		for(int j = 0; j < wordList.size(); j++) {
+			ListNode word = wordList.get(j);
+			if(prevWord.equals(word.getWord())) {
+				return word;
+			} 
+		}
+		return null;
 	}
 	
 	/** 
