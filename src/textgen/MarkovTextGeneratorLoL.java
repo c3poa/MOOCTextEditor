@@ -1,9 +1,11 @@
 package textgen;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /** 
  * An implementation of the MTG interface that uses a list of lists.
@@ -32,35 +34,49 @@ public class MarkovTextGeneratorLoL implements MarkovTextGenerator {
 	@Override
 	public void train(String sourceText)
 	{
-		String[] w = sourceText.split(" ");
-		starter = w[0];
-		String prevWord = starter;
-		ListNode ln = checkNode(prevWord);
-		for(int i = 1; i < w.length; i++) {
-			if(ln != null) {
-				ln.addNextWord(w[i]);
-			} else {
-				ListNode node = new ListNode(prevWord);
-				wordList.add(node);
-				node.addNextWord(w[i]);
+		List<String> w = getWords(sourceText);
+
+		if(!w.isEmpty()) {
+			starter = w.get(0);
+			String prevWord = starter;
+			
+			for(int i = 1; i < w.size(); i++) {
+				ListNode ln = findNode(prevWord);
+				String word = w.get(i);
+				ln.addNextWord(word);
+				prevWord = word;
 			}
-			prevWord = w[i];
-			if(i == w.length-1) {
-				w[i] = starter;
-			}
+			findNode(prevWord).addNextWord(starter);
 		}
 		
 	}
 	
-	public ListNode checkNode(String prevWord) {
+	public ListNode findNode(String prevWord) {
 		
-		for(int j = 0; j < wordList.size(); j++) {
-			ListNode word = wordList.get(j);
-			if(prevWord.equals(word.getWord())) {
-				return word;
+		ListNode ln = null;
+		for(ListNode node : wordList) {
+			if(prevWord.equals(node.getWord())) {
+				ln = node;
+				break;
 			} 
 		}
-		return null;
+		
+		if(ln == null) {
+			ln = new ListNode(prevWord);
+			wordList.add(ln);
+		}
+		
+		return ln;
+	}
+	
+	private List<String> getWords(String source){
+		List<String> words = new ArrayList<String>();
+		Pattern splitter = Pattern.compile("[a-zA-Z]+");
+		Matcher m = splitter.matcher(source);
+		while(m.find()) {
+			words.add(m.group());
+		}
+		return words;
 	}
 	
 	/** 
