@@ -84,10 +84,22 @@ public class MarkovTextGeneratorLoL implements MarkovTextGenerator {
 	 */
 	@Override
 	public String generateText(int numWords) {
-	    // TODO: Implement this method
-		return null;
+		StringBuilder output = new StringBuilder();
+
+		if (!starter.equals("")) {
+			String currWord = starter;
+			while (numWords-- > 0) {
+				output.append(currWord);
+				if (numWords != 0) {
+					output.append(" ");
+				}
+				currWord = findNode(currWord).getRandomNextWord(rnGenerator);
+			}
+
+		}
+
+		return output.toString();
 	}
-	
 	
 	// Can be helpful for debugging
 	@Override
@@ -105,11 +117,15 @@ public class MarkovTextGeneratorLoL implements MarkovTextGenerator {
 	@Override
 	public void retrain(String sourceText)
 	{
-		// TODO: Implement this method.
+		initialize(rnGenerator);
+		train(sourceText);
 	}
 	
-	// TODO: Add any private helper methods you need here.
-	
+	private void initialize(Random generator) {
+		wordList = new LinkedList<ListNode>();
+		starter = "";
+		rnGenerator = generator;
+	}
 	
 	/**
 	 * This is a minimal set of tests.  Note that it can be difficult
@@ -185,10 +201,12 @@ class ListNode
 	
 	public String getRandomNextWord(Random generator)
 	{
-		// TODO: Implement this method
-	    // The random number generator should be passed from 
-	    // the MarkovTextGeneratorLoL class
-	    return null;
+		if(!nextWords.isEmpty()) {
+			int random = generator.nextInt(nextWords.size());
+			return nextWords.get(random);
+		}
+		
+	    return "";
 	}
 
 	public String toString()
